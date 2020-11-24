@@ -13,11 +13,17 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux") 
 	set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
     "${CMAKE_SOURCE_DIR}/cmake/")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+include_directories(${CMAKE_SOURCE_DIR}/glm)
+    link_directories(${CMAKE_SOURCE_DIR}/glm)
     
+    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_SOURCE_DIR}/glm/ ) 
+    message(STATUS "---> ${CMAKE_MODULE_PATH}")
 endif()
+
 
 set (SRCS
     main.cc
@@ -25,5 +31,5 @@ set (SRCS
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE m)
+target_link_libraries(${CMAKE_PROJECT_NAME} )
 

@@ -73,7 +73,7 @@ void WaveFrontReader::readVertices(Mesh& obj) {
                     std::cout << face << std::endl;
                     auto start_pos = face.find('/');
                     index = std::stoul(face.substr(0, start_pos), nullptr);
-                    obj.indicies.push_back(index - 1);
+                    obj.indicies.push_back((uint32_t)index - 1);
                     // std::cout << "start_pos" << start_pos << std::endl;
                     auto end_pos = face.find('/', start_pos + 1);
                     // std::cout << "end_pos" << end_pos << std::endl;
@@ -82,11 +82,11 @@ void WaveFrontReader::readVertices(Mesh& obj) {
                             std::stoul(face.substr(start_pos + 1,
                                                    end_pos - (start_pos + 1)),
                                        nullptr);
-                        obj.texture_indicies.push_back(index - 1);
+                        obj.texture_indicies.push_back((uint32_t)index - 1);
                     }
                     if (start_pos != end_pos - 1) {
                         index = std::stoul(face.substr(end_pos + 1), nullptr);
-                        obj.normal_indicies.push_back(index - 1);
+                        obj.normal_indicies.push_back((uint32_t)index - 1);
                     }
                     std::cout << "f " << obj.indicies.back() + 1 << "/"
                               << obj.texture_indicies.back() + 1 << "/"
