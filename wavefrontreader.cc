@@ -28,12 +28,12 @@ void WaveFrontReader::readVertices(Mesh& obj) {
                 conv >> x >> y >> z;
                 std::cout << "v x " << x << " y " << y << " z " << z
                           << std::endl;
-                vertices.push_back(glm::vec3(x,y,z));
+                vertices.push_back(glm::vec3(x, y, z));
                 continue;
             }
             vpos = line.find("vt ");
             if (vpos == 0) {
-                              std::stringstream conv{line.substr(2)};
+                std::stringstream conv{line.substr(2)};
                 float x, y;
                 conv >> x >> y;
                 std::cout << "vt x " << x << " y " << y << std::endl;
@@ -49,7 +49,7 @@ void WaveFrontReader::readVertices(Mesh& obj) {
                 conv >> x >> y >> z;
                 std::cout << "vn x " << x << " y " << y << std::endl;
                 normals.push_back(glm::vec3(x, y, z));
-            
+
                 continue;
             }
             vpos = line.find("f ");
@@ -67,7 +67,7 @@ void WaveFrontReader::readVertices(Mesh& obj) {
                     auto start_pos = face.find('/');
                     index = std::stoul(face.substr(0, start_pos), nullptr);
                     obj.indicies.push_back((uint32_t)index - 1);
-                    vert.Coord=vertices[index-1];
+                    vert.Coord = vertices[index - 1];
                     // std::cout << "start_pos" << start_pos << std::endl;
                     auto end_pos = face.find('/', start_pos + 1);
                     // std::cout << "end_pos" << end_pos << std::endl;
@@ -77,19 +77,24 @@ void WaveFrontReader::readVertices(Mesh& obj) {
                                                    end_pos - (start_pos + 1)),
                                        nullptr);
                         obj.texture_indicies.push_back((uint32_t)index - 1);
-                        vert.TextureCoord=textureCoords[index-1];
+                        vert.TextureCoord = textureCoords[index - 1];
                     }
                     if (start_pos != end_pos - 1) {
                         index = std::stoul(face.substr(end_pos + 1), nullptr);
                         obj.normal_indicies.push_back((uint32_t)index - 1);
-                        vert.Normal= normals[index-1];
+                        vert.Normal = normals[index - 1];
                     }
                     obj.vertices.push_back(std::move(vert));
-                    std::cout << "f " << obj.indicies.back() + 1 << "/"
-                              << obj.texture_indicies.back() + 1 << "/"
-                              << obj.normal_indicies.back() + 1 << std::endl;
+                    /* std::cout << "f " << obj.indicies.back() + 1 << "/"
+                               << obj.texture_indicies.back() + 1 << "/"
+                               << obj.normal_indicies.back() + 1 << std::endl;
+                               */
                 }
             }
+        }
+        for (const auto& vert : obj.vertices) {
+            std::cout << "v " << vert.Coord.x << "/" << vert.Coord.y << "/"
+                      << vert.Coord.z << std::endl;
         }
         obj.indicies.shrink_to_fit();
         obj.vertices.shrink_to_fit();

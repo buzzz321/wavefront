@@ -2,9 +2,9 @@
 # You may attempt to use it for building too, by modifying this file here.
 
 cmake_minimum_required(VERSION 3.5)
-set(CMAKE_C_COMPILER "clang")
+# set(CMAKE_C_COMPILER "clang")
+#set(CMAKE_CXX_COMPILER "clang++")
 
-set(CMAKE_CXX_COMPILER "clang++")
 project(wfreader)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
