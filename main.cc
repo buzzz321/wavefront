@@ -1,12 +1,11 @@
-#include <iostream>
 #include "wavefrontreader.h"
+#include <iostream>
 
-int main(){
-    WaveFrontReader wf("../kub.obj");
+int main() {
+  WaveFrontReader wf("../plane.obj");
 
-    Mesh obj;
-    wf.readVertices(obj);
-    std::cout<< " hej "<< std::endl;
-    return 0;
+  Mesh obj;
+  wf.readVertices(obj);
+  std::cout << " hej " << std::endl;
+  return 0;
 }
-    

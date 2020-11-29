@@ -86,8 +86,8 @@ void WaveFrontReader::readVertices(Mesh &obj) {
             faces[faceKey] = vertexIndex;
             obj.vertices.push_back(vert);
             obj.indicies.push_back(vertexIndex);
+            vertexIndex++;
           }
-          vertexIndex++;
         }
       }
     }
