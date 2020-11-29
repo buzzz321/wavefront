@@ -6,7 +6,7 @@
 
 struct Vertex {
     glm::vec3 Coord;
-    glm::vec2 TextureCoord;
+    glm::vec2 TextureCoords;
     glm::vec3 Normal;
 };
 

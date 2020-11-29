@@ -2,7 +2,7 @@
 #include "wavefrontreader.h"
 
 int main(){
-    WaveFrontReader wf("../cylinder.obj");
+    WaveFrontReader wf("../kub.obj");
 
     Mesh obj;
     wf.readVertices(obj);
